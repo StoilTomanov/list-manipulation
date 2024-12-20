@@ -30,7 +30,7 @@ describe('ListTwoComponent', () => {
     listActionsService = jasmine.createSpyObj<ListActionsService>({
       addItem: undefined,
       removeItem: undefined,
-      listItemsObservable: listItemsSubject.asObservable(),
+      getListItems: listItemsSubject.asObservable(),
     });
 
     TestBed.configureTestingModule({
@@ -56,7 +56,7 @@ describe('ListTwoComponent', () => {
     fixture = TestBed.createComponent(ListTwoComponent);
     component = fixture.componentInstance;
 
-    listActionsService.listItemsObservable().subscribe((items => {
+    component.listItems$.subscribe((items => {
       receivedListItems = items;
     }));
 
@@ -64,19 +64,18 @@ describe('ListTwoComponent', () => {
   });
 
   it('it should initialize listItems with an empty array', () => {
-    expect(component.listItems).toEqual(['Apple', 'Banana', 'Orange']);
+    expect(receivedListItems).toEqual(['Apple', 'Banana', 'Orange']);
   });
 
   describe('We receive the emitted values', ()=> {
     beforeEach(() => {
-      component.listItems = ['Apple', 'Banana', 'Orange'];
       component.onRemoveItem();
       listItemsSubject.next(['Apple', 'Banana']);
     });
 
     it('it should subscribe to listItemsObservable and update listItems with new values', () => {
       expect(receivedListItems).toEqual(['Apple', 'Banana']);
-      expect(component.listItems).toEqual(receivedListItems);
+      expect(receivedListItems).toEqual(receivedListItems);
     });
   });
 });

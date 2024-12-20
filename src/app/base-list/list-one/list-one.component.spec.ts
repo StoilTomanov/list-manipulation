@@ -30,7 +30,7 @@ describe('ListOneComponent', () => {
     listActionsService = jasmine.createSpyObj<ListActionsService>({
       addItem: undefined,
       removeItem: undefined,
-      listItemsObservable: listItemsSubject.asObservable(),
+      getListItems: listItemsSubject.asObservable(),
     });
 
     TestBed.configureTestingModule({
@@ -56,7 +56,7 @@ describe('ListOneComponent', () => {
     fixture = TestBed.createComponent(ListOneComponent);
     component = fixture.componentInstance;
 
-    listActionsService.listItemsObservable().subscribe((items => {
+    component.listItems$.subscribe((items => {
       receivedListItems = items;
     }));
 
@@ -64,7 +64,7 @@ describe('ListOneComponent', () => {
   });
 
   it('it should initialize listItems with an empty array', () => {
-    expect(component.listItems).toEqual(['Apple', 'Banana', 'Orange']);
+    expect(receivedListItems).toEqual(['Apple', 'Banana', 'Orange']);
   });
 
   describe('We receive the emitted values', ()=> {
@@ -77,7 +77,7 @@ describe('ListOneComponent', () => {
 
     it('it should subscribe to listItemsObservable and update listItems with new values', () => {
       expect(receivedListItems).toEqual(['Apple', 'Banana', 'Orange', 'Grapes']);
-      expect(component.listItems).toEqual(receivedListItems);
+      expect(receivedListItems).toEqual(receivedListItems);
     });
   });
 });

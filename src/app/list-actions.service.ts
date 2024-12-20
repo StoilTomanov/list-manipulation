@@ -6,22 +6,22 @@ export class ListActionsService {
     private listItems: string[] = ['Apple', 'Banana', 'Orange'];
     private listItemsSubject: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(this.listItems);
 
-    listItemsObservable(): Observable<string[]> {
+    getListItems(): Observable<string[]> {
         return this.listItemsSubject.asObservable();
     }
 
     removeItem(): void {
-        const currentItems = this.getListItems();
+        const currentItems = this.getListItemsValue();
         const newItems = currentItems.slice(0, -1);
         this.notifyForListChange(newItems);
     }
 
     addItem(item: string): void {
-        const newItems = [...this.getListItems(), item];
+        const newItems = [...this.getListItemsValue(), item];
         this.notifyForListChange(newItems);
     }
 
-    private getListItems(): string[] {
+    private getListItemsValue(): string[] {
         return this.listItemsSubject.getValue();
     }
 

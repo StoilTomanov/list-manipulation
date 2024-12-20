@@ -1,12 +1,12 @@
 <mat-list class="list-items">
-  @for (item of listItems; track item) {
+  @for (item of listItems$ | async; track item) {
     <mat-list-item>{{ item }}</mat-list-item>
     <mat-divider></mat-divider>
   }
 </mat-list>
 
 <div class="item-actions">
-  <button [disabled]="listItems.length == 0" (click)="onRemoveItem()" mat-fab extended>
+  <button [disabled]="(listItems$ | async)?.length == 0" (click)="onRemoveItem()" mat-fab extended>
     Remove Last Item
     <mat-icon>delete</mat-icon>
   </button>

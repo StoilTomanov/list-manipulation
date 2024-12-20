@@ -17,7 +17,7 @@ describe('ListActionsService', () => {
 
     initialListItem = ['Apple', 'Banana', 'Orange'];
 
-    service.listItemsObservable().subscribe(listItems => {
+    service.getListItems().subscribe(listItems => {
       receivedListItems = listItems;
     });
   });

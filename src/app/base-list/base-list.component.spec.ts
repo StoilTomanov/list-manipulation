@@ -26,6 +26,7 @@ describe('BaseListComponent', () => {
     listActionsService = jasmine.createSpyObj<ListActionsService>({
       addItem: undefined,
       removeItem: undefined,
+      getListItems: undefined,
     });
 
     TestBed.configureTestingModule({
