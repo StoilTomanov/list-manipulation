@@ -1,0 +1,28 @@
+@import '../styles';
+@import '../mixins';
+
+@media (max-width: 1300px) {
+  .lists {
+    flex-direction: column;
+  }
+}
+
+.lists {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  height: 100%;
+  margin: 0 2rem 0 2rem;
+}
+
+.lists > * {
+  @include fadeIn-animation(0.5s);
+  min-height: 15rem;
+  overflow-y: auto;
+  border: 0.05rem solid $main-color;
+  box-shadow: 0.1rem 0.1rem 0.5rem 0.1rem $main-color;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  flex-grow: 1;
+}

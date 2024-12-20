@@ -1,0 +1,23 @@
+// initial requirements
+1. Create a pre-defined list with text/number values, it could a json or just a variable For example: Apple, Orange, Pineapple
+2. Create two similar blocks that will show a list of these values
+3. Each block should be independent, actions in the other block shouldn’t affect lists of each other
+4. Add an option to add a new valuexc
+5. Add an option to remove a value
+6. All interactions with a list should be done in the service, this means the component should only get the list value, and all actio
+
+// requirements sent over the email with HR
+1. Create a pre-defined list with text/number values, it could a json or just a variable - For example: Apple, Orange, Pineapple
+2. Create two equal blocks that will render a list of these values
+3. Each block should be independent, actions made on a block shouldn't affect the lists of the other block
+4. Each block should contain:
+  - An option to add a new item
+  - An option to remove the last item
+5. All interactions with a list should be done in the service, this means the component should only
+   get the list value passed in, and all data manipulation should be done inside the service
+6. Make sure to use immutable arrays
+7. Make sure to use Observables
+8. Add a basic styling, make it pretty ;)
+9. Feel free to use MaterialUI (+)
+10. It will be a plus to have unit tests, even if basic
+11. Push this into a pubic Github repository and provide its URL

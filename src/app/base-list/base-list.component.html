@@ -1,0 +1,20 @@
+<mat-list class="list-items">
+  @for (item of listItems; track item) {
+    <mat-list-item>{{ item }}</mat-list-item>
+    <mat-divider></mat-divider>
+  }
+</mat-list>
+
+<div class="item-actions">
+  <button [disabled]="listItems.length == 0" (click)="onRemoveItem()" mat-fab extended>
+    Remove Last Item
+    <mat-icon>delete</mat-icon>
+  </button>
+  <button [disabled]="!itemFormControl.value" (click)="onAddItem()" mat-fab extended>
+    Add New Item
+    <mat-icon>add</mat-icon>
+  </button>
+  <mat-form-field [subscriptSizing]="'dynamic'">
+    <input type="text" matNativeControl matInput [formControl]="itemFormControl">
+  </mat-form-field>
+</div>
