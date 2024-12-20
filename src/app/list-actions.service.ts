@@ -25,6 +25,6 @@ export class ListActionsService {
   }
 
   private notifyForListChange(updatedList: string[]): void {
-    this.listItemsSubject.next(updatedList);
+    this.listItemsSubject.next([...updatedList]);
   }
 }
