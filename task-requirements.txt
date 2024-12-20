@@ -1,11 +1,3 @@
-// initial requirements
-1. Create a pre-defined list with text/number values, it could a json or just a variable For example: Apple, Orange, Pineapple
-2. Create two similar blocks that will show a list of these values
-3. Each block should be independent, actions in the other block shouldn’t affect lists of each other
-4. Add an option to add a new valuexc
-5. Add an option to remove a value
-6. All interactions with a list should be done in the service, this means the component should only get the list value, and all actio
-
 // requirements sent over the email with HR
 1. Create a pre-defined list with text/number values, it could a json or just a variable - For example: Apple, Orange, Pineapple
 2. Create two equal blocks that will render a list of these values
