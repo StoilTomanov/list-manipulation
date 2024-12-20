@@ -12,26 +12,26 @@ import { BaseListComponent } from '../base-list.component';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-list-two',
-  templateUrl: '../base-list.component.html',
-  styleUrl: '../base-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [ListActionsService],
-  imports: [
-    MatListModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule,
-  ],
+    selector: 'app-list-two',
+    templateUrl: '../base-list.component.html',
+    styleUrl: '../base-list.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [ListActionsService],
+    imports: [
+        MatListModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule,
+    ],
 })
 export class ListTwoComponent extends BaseListComponent implements OnDestroy {
-  override listItems: string[] = [];
-  listItemsSubscription: Subscription | undefined;
+    override listItems: string[] = [];
+    listItemsSubscription: Subscription | undefined;
 
-  constructor(protected override listActionsService: ListActionsService) {
-    super(listActionsService);
-    this.listItemsSubscription = this.listActionsService.listItemsObservable()
-      .subscribe((listItems) => this.listItems = listItems);
-  }
+    constructor(protected override listActionsService: ListActionsService) {
+        super(listActionsService);
+        this.listItemsSubscription = this.listActionsService.listItemsObservable()
+            .subscribe((listItems) => this.listItems = [...listItems]);
+    }
 
-  ngOnDestroy(): void {
-    this.listItemsSubscription?.unsubscribe();
-  }
+    ngOnDestroy(): void {
+        this.listItemsSubscription?.unsubscribe();
+    }
 }

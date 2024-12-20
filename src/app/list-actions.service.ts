@@ -3,28 +3,29 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable()
 export class ListActionsService {
-  private listItems: string[] = ['Apple', 'Banana', 'Orange'];
-  private listItemsSubject: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(this.listItems);
+    private listItems: string[] = ['Apple', 'Banana', 'Orange'];
+    private listItemsSubject: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(this.listItems);
 
-  listItemsObservable(): Observable<string[]> {
-    return this.listItemsSubject.asObservable();
-  }
-
-  removeItem(): void {
-    const currentItems = this.listItemsSubject.getValue();
-    if (currentItems.length > 0) {
-      currentItems.pop();
-      this.notifyForListChange(currentItems);
+    listItemsObservable(): Observable<string[]> {
+        return this.listItemsSubject.asObservable();
     }
-  }
 
-  addItem(item: string): void {
-    const newItems = this.listItemsSubject.getValue();
-    newItems.push(item);
-    this.notifyForListChange(newItems);
-  }
+    removeItem(): void {
+        const currentItems = this.getListItems();
+        const newItems = currentItems.slice(0, -1);
+        this.notifyForListChange(newItems);
+    }
 
-  private notifyForListChange(updatedList: string[]): void {
-    this.listItemsSubject.next([...updatedList]);
-  }
+    addItem(item: string): void {
+        const newItems = [...this.getListItems(), item];
+        this.notifyForListChange(newItems);
+    }
+
+    private getListItems(): string[] {
+        return this.listItemsSubject.getValue();
+    }
+
+    private notifyForListChange(updatedList: string[]): void {
+        this.listItemsSubject.next(updatedList);
+    }
 }
